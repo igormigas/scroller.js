@@ -1,0 +1,16 @@
+{
+  "name": "@imigas/scroller.js",
+  "version": "0.1.0",
+  "description": "Vertical page scroller",
+  "main": "index",
+  "module": "index",
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Igor Migasiewicz <igor.migasiewicz@gmail.com>",
+  "license": "MIT"
+}
