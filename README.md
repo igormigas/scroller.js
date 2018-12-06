@@ -11,13 +11,12 @@ Scroller.js was created as an additon to specific project and for self-education
 Although being inspired by Fullpage, none of its code was ever directly used or rewritten.
 
 ## Possibilities
-- slide-like scrolling effect (desktop only, currently slides can have only viewport height)
+- slide-like scrolling effect, both desktop and mobile (currently slides can have only viewport height)
 - callbacks for init, start and end of scrolling (listeners) with event data
 - simple api with manual scrolling functions
-- scroll speed adjustment
 
 ## Todo
-- touch events for mobile support
+- component inline adjustments
 - perspective and scale effects for elements' childs
 - [API] scrolling to specific element
 - tests
@@ -26,16 +25,14 @@ Although being inspired by Fullpage, none of its code was ever directly used or 
 
 **npm**
 
-```shell
-$ npm install scroller.js
-```
+The script is currently unavailable on npm.
 
 **JS React script**
 
 ```javascript
 // ES6 syntax
 // Component name may have any name as it is default import
-import ReactScroller from 'scroller.js';
+import ReactScroller from 'path/src/ReactScroller.js';
 ```
 
 ## Usage
@@ -44,23 +41,21 @@ To see the effect of the scroller, all you need to do is wrap your elements with
 
 ```jsx
 import React from 'react';
-import ReactScroller from 'scroller.js';
+import ReactScroller from 'path/src/ReactScroller.js';
 
 const Component = (props) => {
   return (
     <ReactScroller>
-      <div>
-        <section>
-          Section 1
-        </section>
-        <section>
-          Section 2
-        </section>
-        <section>
-          Section 3
-        </section>
-        more sections...
-      </div>
+      <section>
+        Section 1
+      </section>
+      <section>
+        Section 2
+      </section>
+      <section>
+        Section 3
+      </section>
+      more sections...
     </ReactScroller>
   );
 }
@@ -72,13 +67,19 @@ By passing custom callback functions, you can create simple listeners and use sp
 
 ```jsx
 import React from 'react';
-import ReactScroller from 'scroller.js';
+import ReactScroller from 'path/src/ReactScroller.js';
 
 const Component = (props) => {
 
-  const onScrollInit = (e) => {
+  const onMount = (e) => {
     // Initial callback
     // Get initial settings if necessary
+  }
+
+  const onUpdate = (e) => {
+    // Update callback
+    // This callback will be triggered only if the number of elements
+    // has changed during component update.
   }
 
   const onScrollStart = (e) => {
@@ -92,13 +93,12 @@ const Component = (props) => {
 
   return (
     <ReactScroller
-      onScrollInit={this.onScrollInit}
+      onMount={this.onMount}
+      onUpdate={this.onUpdate}
       onScrollStart={this.onScrollStart}
       onScrollEnd={this.onScrollEnd}
     >
-      <div>
-        // sections..
-      </div>
+      // sections..
     </ReactScroller>
   );
 }
@@ -108,13 +108,13 @@ Wrapping your elements into arrow function gives you simple api with more possib
 
 ```jsx
 import React from 'react';
-import ReactScroller from 'scroller.js';
+import ReactScroller from 'path/src/ReactScroller.js';
 
 const Component = (props) => {
   return (
     <ReactScroller>
       {api => (
-        <div>
+        <>
           <section>
             Section 1
             <button onClick={api.scrollBottom}>Scroll to the bottom!</button>
@@ -128,7 +128,7 @@ const Component = (props) => {
             <button onClick={api.scrollUp}>Scroll up!</button>
           </section>
           more sections...
-        </div>
+        </>
       )}
     </ReactScroller>
   );
